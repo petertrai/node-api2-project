@@ -1,3 +1,18 @@
 // implement your server here
 // require your posts router and connect it here
-// hi
+const express = require('express');
+
+const postsRouter = require('./posts/posts-router')
+const server = express();
+
+server.use(express.json())
+server.use('/api/posts', postsRouter)
+
+server.get('/', (req, res) => {
+    res.send(`
+    <h2>POSTS API</h>
+    <p> Welcoem to the Posts API </p>
+    `)
+})
+
+module.exports = server
